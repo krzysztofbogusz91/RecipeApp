@@ -7,11 +7,13 @@ import Footer from './footer.jsx'
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div >
                 <Nav/>
-                <SearchBar/>
-                <RecipeApp />
-                <Footer/>
+                <div className={"container-main"}>
+                    <SearchBar/>
+                    <RecipeApp />
+                    <Footer/>
+                </div>
             </div>
         );
     }

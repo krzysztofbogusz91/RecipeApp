@@ -1,1 +1,11 @@
 /*my CSS styles*/
+
+.container-main{
+    width: 75%;
+    margin: 0 auto;
+}
+
+nav > ul{
+    width: 75%;
+    margin: 0 auto;
+}

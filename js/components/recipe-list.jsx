@@ -16,21 +16,21 @@ class RecipeApp extends React.Component {
         let searchTerm = this.state.searchTerm;
         let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&health=vegan`
 
-        fetch(myUrl)
-            .then(response =>{
-                if (response.ok)
-
-                    return response.json();
-                else
-                    throw new Error('err');
-            })
-            .then(data => {
-                console.log(data.hits)
-                this.setState({
-                    data: data.hits
-                })
-            })
-            .catch(err=>console.log("err"))
+        // fetch(myUrl)
+        //     .then(response =>{
+        //         if (response.ok)
+        //
+        //             return response.json();
+        //         else
+        //             throw new Error('err');
+        //     })
+        //     .then(data => {
+        //         console.log(data.hits)
+        //         this.setState({
+        //             data: data.hits
+        //         })
+        //     })
+        //     .catch(err=>console.log("err"))
     }
 
     render() {
@@ -40,7 +40,7 @@ class RecipeApp extends React.Component {
         })
         return (
             <div className={"text-info"}>
-                <h1 className={"display-3"}>Recipes List:</h1>
+                <h1 className={"display-6"}>Recipes List:</h1>
                 <ul>
                     {list}
                 </ul>
