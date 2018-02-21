@@ -7,16 +7,18 @@ class RecipeApp extends React.Component {
         super(props);
         this.state = {
             data: [],
+
         }
     }
 
     getData = () => {
-
+        console.log("Aktywne filtry: " + this.props.filters);
         const key = '5b315f7bf33cf8394db9196b3f6e7a88';
         const appId = '0824c68c';
         //gets search value from search-bar => app => here
-        let searchTerm = this.props.searchTerm;
-        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}`;
+        const searchTerm = this.props.searchTerm;
+        const filtersArr = this.props.filters;
+        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&healthLabels=${filtersArr}`;
 
         fetch(myUrl)
             .then(response => {
@@ -38,13 +40,33 @@ class RecipeApp extends React.Component {
 
 
     render() {
+        //check if filters are longer than 0 if yes do backup filter on healthLabels => one from api is far from perfect
+
+        let list = this.state.data;
+
+        if (this.props.filters.length > 0){
+            list = this.state.data.filter(a =>{
+                let healthLabelsLower = a.recipe.healthLabels.map(a=>a.toLowerCase())
+
+                let found = this.props.filters.some(r=>{
+                    console.log(r);
+                    return healthLabelsLower.indexOf(r) >= 0
+                })
+                console.log(found);
+                return found ? a : false;
+            })
+
+            list = list.map(a => {
+                return <ListItem data={a}/>
+            })
+        }else{
 
         //list all hits from data and pass each val to  => list-item
         //set ListItem state.show to false every new search query
-        const list = this.state.data.map(a => {
+        list = list.map(a => {
             return <ListItem data={a}/>
         })
-
+        }
         //this.getData on click fetch new data from api => new search each time
         return (
             <div className={""}>

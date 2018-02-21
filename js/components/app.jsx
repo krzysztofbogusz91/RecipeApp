@@ -37,13 +37,13 @@ class App extends React.Component {
         })}
 
     render() {
-        console.log("Aktywne filtry: " + this.state.filters);
+
         return (
             <div >
                 <Nav/>
                 <div className={"container-main"}>
                     <SearchBar  param={this.param} filters={this.filters}/>
-                    <RecipeApp searchTerm={this.state.searchTerm}/>
+                    <RecipeApp filters={this.state.filters} searchTerm={this.state.searchTerm}/>
                     <Footer/>
                 </div>
             </div>

@@ -9,6 +9,7 @@ class ListItem extends React.Component {
         }
     }
 
+    //solves show propblem after feach new data => all li detatils are hiden now after evoking function
     componentWillReceiveProps(nextProps){
         if(this.props.data !== nextProps.data){
             this.setState({
@@ -16,6 +17,8 @@ class ListItem extends React.Component {
             })
         }
     }
+
+
     toggleShow = () => {
 
      this.setState({

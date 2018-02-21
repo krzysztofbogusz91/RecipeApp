@@ -35,12 +35,12 @@ class SearchBar extends React.Component {
                     </div>
                 </div>
                 <div className={"list-group d-flex flex-row mt-4 mb-4"}>
-                    <a id={"low-fat"} onClick={this.setFilters} href="#"
-                       className={"list-group-item p-2 list-group-item-action"}>Low Fat</a>
-                    <a id={"gluten-free"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Gluten Free</a>
+                    <a id={"alcohol-free"} onClick={this.setFilters} href="#"
+                       className={"list-group-item p-2 list-group-item-action"}>Alcohol Free</a>
+                    <a id={"sugar-conscious"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Low Sugar</a>
                     <a id={"vegan"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Vegan</a>
                     <a id={"vegetarian"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Vegeterian</a>
-                    <a id={"lactose-free"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Lactose Free</a>
+                    <a id={"tree-nut-free"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Tree Nuts Free</a>
                     <a id={"peanut-free"} onClick={this.setFilters} href="#" className={"list-group-item p-2 list-group-item-action"}>Peanut-free</a>
                 </div>
             </div>
