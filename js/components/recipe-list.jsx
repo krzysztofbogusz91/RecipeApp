@@ -7,7 +7,6 @@ class RecipeApp extends React.Component {
         super(props);
         this.state = {
             data: [],
-
         }
     }
 
@@ -37,12 +36,13 @@ class RecipeApp extends React.Component {
             .catch(err => console.log("err"))
     }
 
+
     render() {
 
         //list all hits from data and pass each val to  => list-item
         //set ListItem state.show to false every new search query
         const list = this.state.data.map(a => {
-            return <ListItem show={false} data={a}/>
+            return <ListItem data={a}/>
         })
 
         //this.getData on click fetch new data from api => new search each time
