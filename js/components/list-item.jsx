@@ -25,6 +25,7 @@ class ListItem extends React.Component {
          show: this.state.show ? false : true
      })
 
+
     }
 
     render() {
@@ -35,7 +36,7 @@ class ListItem extends React.Component {
                 <h4 className={"text-info"}>{this.props.data.recipe.label}</h4>
                 <span className={"text-align-left "}>Clik!</span>
             </li>
-            {this.state.show && <ListItemDetails data={this.props.data}/>}
+            {this.state.show && <ListItemDetails data={this.props.data} termYT={this.props.data.recipe.label}/>}
         </div>
         );
     }

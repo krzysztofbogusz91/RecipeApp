@@ -61,15 +61,15 @@ class RecipeApp extends React.Component {
                 return found.includes(false) ? false : a;
             })
             //print menu list
-            list = list.map(a => {
-                return <ListItem data={a}/>
+            list = list.map((a,i) => {
+                return <ListItem key={a+i} data={a}/>
             })
         } else {
 
             //list all hits from data and pass each val to  => list-item
             //set ListItem state.show to false every new search query
-            list = list.map(a => {
-                return <ListItem data={a}/>
+            list = list.map((a,i) => {
+                return <ListItem key={a+i} data={a}/>
             })
         }
         //this.getData on click fetch new data from api => new search each time
