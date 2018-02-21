@@ -1,6 +1,31 @@
 import React from "react";
+const API_KEY = "AIzaSyAQ6twlYXicuLXk2m0l9cGOkZpx4eYp6Iw";
 
 class ListItemDetails extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state ={
+            url: ""
+        }
+
+        const url = "https://www.googleapis.com/youtube/v3/searchsearch?part=snippet&q=YouTube+Data+API&type=video&videoCaption=closedCaption&key=" + API_KEY;
+        fetch(url)
+            .then(response => {
+                if (response.ok)
+
+                    return response.json();
+                else
+                    throw new Error('err responce not ok');
+            })
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    url: ""
+                })
+            })
+            .catch(err => console.log("err"))
+    }
+
     render() {
 
         const liItems = this.props.data.recipe.ingredientLines.map(a => {

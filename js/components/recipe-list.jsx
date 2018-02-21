@@ -7,7 +7,6 @@ class RecipeApp extends React.Component {
         super(props);
         this.state = {
             data: [],
-
         }
     }
 
@@ -18,7 +17,7 @@ class RecipeApp extends React.Component {
         //gets search value from search-bar => app => here
         const searchTerm = this.props.searchTerm;
         const filtersArr = this.props.filters;
-        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&healthLabels=${filtersArr}`;
+        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&healthLabels=${filtersArr}&to=30&ingr=8`;
 
         fetch(myUrl)
             .then(response => {
@@ -44,28 +43,34 @@ class RecipeApp extends React.Component {
 
         let list = this.state.data;
 
-        if (this.props.filters.length > 0){
-            list = this.state.data.filter(a =>{
-                let healthLabelsLower = a.recipe.healthLabels.map(a=>a.toLowerCase())
+        if (this.props.filters.length > 0) {
+            list = this.state.data.filter(a => {
+                //set new variable for element api health tags to lower case so match my filters
+                let healthLabelsLower = a.recipe.healthLabels.map(a => a.toLowerCase())
 
-                let found = this.props.filters.some(r=>{
-                    console.log(r);
-                    return healthLabelsLower.indexOf(r) >= 0
+                let found = [];
+                //check if healthLabelsLower contains all of filters
+                this.props.filters.forEach(e => {
+                    if (healthLabelsLower.includes(e)) {
+                        found.push(true);
+                    } else {
+                        found.push(false);
+                    }
                 })
-                console.log(found);
-                return found ? a : false;
+                //if all true return element else discard
+                return found.includes(false) ? false : a;
             })
-
+            //print menu list
             list = list.map(a => {
                 return <ListItem data={a}/>
             })
-        }else{
+        } else {
 
-        //list all hits from data and pass each val to  => list-item
-        //set ListItem state.show to false every new search query
-        list = list.map(a => {
-            return <ListItem data={a}/>
-        })
+            //list all hits from data and pass each val to  => list-item
+            //set ListItem state.show to false every new search query
+            list = list.map(a => {
+                return <ListItem data={a}/>
+            })
         }
         //this.getData on click fetch new data from api => new search each time
         return (
