@@ -22,7 +22,7 @@ class SearchBar extends React.Component{
                         <label htmlFor="search" className={"lead"}>Search for recipe,item or diet:</label>
                     </div>
                    <div className="col-md-8">
-                       <input onChange={this.changeInput} className={"form-control"} id="search" type="text"/>
+                       <input onChange={this.changeInput} className={"form-control"} id="search" type="text" value={this.state.search}/>
                    </div>
                 </div>
                 <div className={"list-group d-flex flex-row mt-4 mb-4"}>

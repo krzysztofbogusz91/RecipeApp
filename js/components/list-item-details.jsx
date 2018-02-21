@@ -3,7 +3,7 @@ import React from "react";
 class ListItemDetails extends React.Component {
     render() {
         return (
-            <div>
+            <div className={"bg-dark text-light w-100 p-4"}>
                 Item Stuff Details
             </div>
         );

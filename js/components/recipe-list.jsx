@@ -2,46 +2,59 @@ import React from "react";
 import ListItem from './list-item.jsx';
 
 
+
 class RecipeApp extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
-            searchTerm: "dinner"
         }
-
-        const key = '86e4b9dddc0cb162507bffc60e7830a3';
+        //this.props.searchTerm
+        const key = '5b315f7bf33cf8394db9196b3f6e7a88';
         const appId = '0824c68c';
-        let searchTerm = this.state.searchTerm;
-        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&health=vegan`
+        let searchTerm = "vegan";
+        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}`;
+       // this.getData(searchTerm, myUrl);
 
-        // fetch(myUrl)
-        //     .then(response =>{
-        //         if (response.ok)
-        //
-        //             return response.json();
-        //         else
-        //             throw new Error('err');
-        //     })
-        //     .then(data => {
-        //         console.log(data.hits)
-        //         this.setState({
-        //             data: data.hits
-        //         })
-        //     })
-        //     .catch(err=>console.log("err"))
     }
+
+    getData = () =>{
+
+        const key = '5b315f7bf33cf8394db9196b3f6e7a88';
+        const appId = '0824c68c';
+        let searchTerm = this.props.searchTerm;
+        let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}`;
+
+        fetch(myUrl)
+            .then(response =>{
+                if (response.ok)
+
+                    return response.json();
+                else
+                    throw new Error('err responce not ok');
+            })
+            .then(data => {
+                console.log(data.hits)
+                this.setState({
+                    data: data.hits
+                })
+            })
+            .catch(err=>console.log("err"))
+
+    }
+
 
     render() {
 
+
         const list = this.state.data.map(a=>{
-            return <li>{a.recipe.label}</li>
+            return <ListItem data={a}/>
         })
         return (
-            <div className={"text-info"}>
-                <h1 className={"display-6"}>Recipes List:</h1>
-                <ul>
+            <div >
+                <a className={"btn btn-info btn-block"} role={"button"} onClick={this.getData}>Get Recipe List:</a>
+                <ul className={"text-info mt-5 list-group"}>
                     {list}
                 </ul>
             </div>
@@ -49,3 +62,5 @@ class RecipeApp extends React.Component {
     }
 }
 export default RecipeApp;
+
+
