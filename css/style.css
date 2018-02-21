@@ -9,3 +9,22 @@ nav > ul{
     width: 75%;
     margin: 0 auto;
 }
+
+.list-recipes{
+    min-height: 400px;
+
+}
+
+
+.list-recipe > li{
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.item-details > div > img{
+    max-height: 150px;
+}
+
+iframe{
+    width: 200px;
+}
