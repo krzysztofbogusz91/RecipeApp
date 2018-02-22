@@ -7,7 +7,7 @@ class About extends React.Component {
 
         return (
             <div >
-                <h1 className={"text-info"}>This is an about page of this app it is working!!</h1>
+                <h1 className={"about text-info d-flex justify-content-center align-items-center "}>This is an about page of this app!!</h1>
             </div>
         );
     }

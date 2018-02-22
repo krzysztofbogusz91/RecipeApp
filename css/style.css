@@ -1,5 +1,8 @@
 /*my CSS styles*/
+.about{
+    height: 60vh;
 
+}
 .container-main{
     width: 75%;
     margin: 0 auto;
@@ -11,7 +14,7 @@ nav > ul{
 }
 
 .list-recipes{
-    min-height: 400px;
+    min-height:30vh;
 
 }
 

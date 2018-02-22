@@ -1,19 +1,21 @@
 import React from "react";
 import YTSearch from "youtube-api-search"
+
 const API_KEY = "AIzaSyAQ6twlYXicuLXk2m0l9cGOkZpx4eYp6Iw";
 
 
 class ListItemDetails extends React.Component {
     constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             id: ""
         }
 
         //Need to work on better video proposition search mechnanism
         //sometimes gets weird propositions
 
-        YTSearch({key: API_KEY , term: this.props.termYT}, (data) => {
+        //feach data from yt api, change state and pass it to url
+        YTSearch({key: API_KEY, term: this.props.termYT}, (data) => {
 
             console.log(data[0].id.videoId);
 
@@ -24,24 +26,33 @@ class ListItemDetails extends React.Component {
 
         });
     }
-
+    //update data base, add element to user favouries list;
+    addToFavourites = (event) => {
+        event.preventDefault();
+        console.log(this, "favclick");
+    }
 
 
     render() {
+        console.log(favListDb)
+        //url of yt video
+        const url = `https://www.youtube.com/embed/${this.state.id}`;
 
-       //url of yt video
-       const url = `https://www.youtube.com/embed/${this.state.id}`;
-
-        const liItems = this.props.data.recipe.ingredientLines.map((a,i) => {
-            return <li key={a+i+"2"} className={"bg-light list-group-item text-dark "}>{a}</li>
+        //list of ingredients
+        const liItems = this.props.data.recipe.ingredientLines.map((a, i) => {
+            return <li key={a + i + "2"} className={"bg-light list-group-item text-dark "}>{a}</li>
         })
 
+
+        //show list of ingredients , img, some recipe data,button to orginal recipe, video proposition
         return <div>
             <div className={"item-details bg-dark w-100 d-flex flex-row justify-content-between align-content-center"}>
                 <div className={""}>
                     <ul className={"list-group list-recipe p-4"}>
                         {liItems}
                     </ul>
+                    <a href="#" onClick={this.addToFavourites} className={"btn btn-warning text-dark btn-block m-4"}>Add to
+                        Favourites!</a>
                 </div>
                 <div className={"d-flex flex-column justify-content-start align-items-start text-light p-4"}>
                     <img className={"mb-4"} src={this.props.data.recipe.image} alt="food.img"/>

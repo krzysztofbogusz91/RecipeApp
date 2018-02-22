@@ -18,6 +18,7 @@ class SearchBar extends React.Component {
     }
     //set and pass filter id to App - to add - or to remove from filters.state array
     setFilters = (event) => {
+        event.preventDefault();
         document.getElementById(event.target.id).classList.toggle("active")
         this.props.filters(event.target.id);
     }

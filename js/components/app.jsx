@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter,
+    HashRouter,
     Route,
     Link,
     Switch,
@@ -17,21 +17,19 @@ class App extends React.Component {
 
     render() {
     //Route set default?? => on refresh/recipe blank page
-        return (
 
-            <BrowserRouter>
+        return (
+            <HashRouter>
                 <div>
                     <Nav/>
                     <div className={"container-main"}>
-
                         <Route exact path="/" component={About}/>
                         <Route path="/recipe" component={RecipeComponents}/>
                         <Route path="/fav" component={Favourites}/>
                     </div>
                     <Footer/>
                 </div>
-            </BrowserRouter>
-
+            </HashRouter>
         );
     }
 }

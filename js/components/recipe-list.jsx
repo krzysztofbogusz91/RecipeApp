@@ -1,7 +1,6 @@
 import React from "react";
 import ListItem from './list-item.jsx';
 
-
 class RecipeApp extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +21,6 @@ class RecipeApp extends React.Component {
         fetch(myUrl)
             .then(response => {
                 if (response.ok)
-
                     return response.json();
                 else
                     throw new Error('err responce not ok');
@@ -37,15 +35,13 @@ class RecipeApp extends React.Component {
             .catch(err => console.log("err"))
     }
 
-
     render() {
         //check if filters are longer than 0 if yes do backup filter on healthLabels => one from api is far from perfect
-
         let list = this.state.data;
 
         if (this.props.filters.length > 0) {
             list = this.state.data.filter(a => {
-                //set new variable for element api health tags to lower case so match my filters
+                //set new variable for element api health tags to lower case => match my filters
                 let healthLabelsLower = a.recipe.healthLabels.map(a => a.toLowerCase())
 
                 let found = [];
@@ -61,26 +57,22 @@ class RecipeApp extends React.Component {
                 return found.includes(false) ? false : a;
             })
             //print menu list
-            list = list.map((a,i) => {
-                return <ListItem key={a+i} data={a}/>
+            list = list.map((a, i) => {
+                return <ListItem key={a + i} data={a}/>
             })
         } else {
-
             //list all hits from data and pass each val to  => list-item
-            //set ListItem state.show to false every new search query
-            list = list.map((a,i) => {
-                return <ListItem key={a+i} data={a}/>
+            list = list.map((a, i) => {
+                return <ListItem key={a + i} data={a}/>
             })
         }
         //this.getData on click fetch new data from api => new search each time
         return (
             <div className={""}>
                 <a className={"btn btn-info btn-block"} role={"button"} onClick={this.getData}>Get Recipe List:</a>
-
                 <ul className={"text-info mt-5 list-group list-recipes"}>
-                    {list.length === 0 ? "Write query in search box to look for recipes" : list}
+                    {list.length === 0 ? "Write query in search box and hit search button to look for recipes..." : list}
                 </ul>
-
             </div>
         )
     }
