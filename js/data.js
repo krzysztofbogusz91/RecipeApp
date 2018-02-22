@@ -1,3 +1,0 @@
-const favListDb = {
-    favs:[]
-}

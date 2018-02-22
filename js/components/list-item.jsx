@@ -28,6 +28,7 @@ class ListItem extends React.Component {
     render() {
         //handle toggle funcion on li element
         //pass props to details component, also yt search term for video matching recipe
+
         return (
             <div className={""}>
                 <li onClick={this.toggleShow}
