@@ -13,13 +13,13 @@ class Nav extends React.Component{
             <ul className={"navbar-nav d-flex flex-row-reverse"}>
 
                 <li className={"nav-item p-2"}>
-                    <NavLink to="/recipe" className={"nav-link"} >Search For Recipes</NavLink>
+                    <Link to="/recipe" className={"nav-link"} >Search For Recipes</Link>
                 </li>
                 <li className={"nav-item p-2"}>
                     <Link to="/fav" className={"nav-link"}>Favourites</Link>
                 </li>
                 <li className={"nav-item p-2"}>
-                    <Link exact to="/" className={"nav-link"} activeClassName={"active"}>About</Link>
+                    <NavLink exact to="/" className={"nav-link"} activeClassName={"active"}>About</NavLink>
                 </li>
             </ul>
         </nav>;
