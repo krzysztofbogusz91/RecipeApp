@@ -1,12 +1,14 @@
 import React from "react";
 import YTSearch from "youtube-api-search";
+import Loader from "./loader.jsx";
 const API_KEY = "AIzaSyAQ6twlYXicuLXk2m0l9cGOkZpx4eYp6Iw";
 
 class ListItemDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: ""
+            id: "",
+            loader:true
         }
 
         //Need to work on better video proposition search mechanism
@@ -16,7 +18,8 @@ class ListItemDetails extends React.Component {
         YTSearch({key: API_KEY, term: this.props.termYT}, (data) => {
             //pass first youtube search for name of recipe
             this.setState({
-                id: data[0].id.videoId
+                id: data[0].id.videoId,
+                loader:false
             });
 
         });
@@ -27,6 +30,38 @@ class ListItemDetails extends React.Component {
         const favItem ={};
         favItem.data = this.props.data;
         favListDb.favs.push(favItem);
+
+
+
+        const myDb = "https://recipe-app-195913.firebaseio.com/hits/.json"
+
+        const database = firebase.database();
+
+        const ref = database.ref("hits");
+        const data = {
+            data: "some_data"
+        }
+
+        ref.push(data);
+
+        // fetch(myDb,{
+        //     method: 'POST',
+        //     name:"my name",
+        //     body:({favItem})
+        // })
+        //     .then(response => {
+        //         if (response.ok)
+        //             return response.json();
+        //         else
+        //             throw new Error('err responce not ok');
+        //     })
+        //     .then(data => {
+        //         //update RecipeApp state.data - with data from API
+        //        // console.log(data)
+        //         console.log(data[0].start)
+        //
+        //     })
+        //     .catch(err => console.log("err"))
     }
 
 
@@ -42,8 +77,18 @@ class ListItemDetails extends React.Component {
 
 
         //show list of ingredients , img, some recipe data,button to orginal recipe, video proposition
-        return <div>
+        if(this.state.loader===true){
+            return (
+                <div className={"p-4"}>
+                    <Loader/>
+                </div>    );
+        }else{
+
+        return (<div>
+
+
             <div className={"item-details bg-dark w-100 d-flex flex-row justify-content-between align-content-center"}>
+
                 <div className={""}>
                     <ul className={"list-group list-recipe p-4"}>
                         {liItems}
@@ -68,7 +113,9 @@ class ListItemDetails extends React.Component {
                     <iframe src={url} className="embed-responsive-item"/>
                 </div>
             </div>
-        </div>;
+
+        </div>);
+    }
     }
 }
 

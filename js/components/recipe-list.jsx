@@ -1,11 +1,13 @@
 import React from "react";
 import ListItem from './list-item.jsx';
+import Loader from './loader.jsx';
 
 class RecipeApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [],
+            loader: false
         }
     }
 
@@ -16,7 +18,9 @@ class RecipeApp extends React.Component {
         const searchTerm = this.props.searchTerm;
         const filtersArr = this.props.filters;
         let myUrl = `https://api.edamam.com/search?q=${searchTerm}&app_id=${appId}&app_key=${key}&healthLabels=${filtersArr}&to=30&ingr=8`;
-
+        this.setState({
+            loader: true
+        })
         fetch(myUrl)
             .then(response => {
                 if (response.ok)
@@ -27,7 +31,8 @@ class RecipeApp extends React.Component {
             .then(data => {
                 //update RecipeApp state.data - with data from API
                 this.setState({
-                    data: data.hits
+                    data: data.hits,
+                    loader: false
                 })
             })
             .catch(err => console.log("err"))
@@ -69,7 +74,8 @@ class RecipeApp extends React.Component {
             <div className={""}>
                 <a className={"btn btn-info btn-block"} role={"button"} onClick={this.getData}>Get Recipe List:</a>
                 <ul className={"text-info mt-5 list-group list-recipes"}>
-                    {list.length === 0 ? "Write query in search box and hit search button to look for recipes..." : list}
+                    {this.state.loader ? <Loader /> : null}
+                    {(list.length === 0 && this.state.loader === false) ? "Write query in search box and hit search button to look for recipes..." : list}
                 </ul>
             </div>
         )
