@@ -14,7 +14,7 @@ import Favourites from './favourites.jsx';
 import Footer from './footer.jsx';
 
 
-class App extends React.Component {
+class RecipeComponents extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +49,7 @@ class App extends React.Component {
     }
 
     render() {
-    //Route set default?? => on refresh/recipe blank page
+        //Route set default?? => on refresh/recipe blank page
         return (
 
             <BrowserRouter>
