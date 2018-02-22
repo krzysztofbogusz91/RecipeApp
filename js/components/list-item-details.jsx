@@ -10,60 +10,57 @@ class ListItemDetails extends React.Component {
             id: ""
         }
 
-    }
+        //Need to work on better video proposition search mechnanism
+        //sometimes gets weird propositions
 
+        YTSearch({key: API_KEY , term: this.props.termYT}, (data) => {
 
-    componentWillMount() {
-        let videoId;
-
-        YTSearch({key: API_KEY , term: this.props.termYT}, function (data) {
-            // console.log(data);
             console.log(data[0].id.videoId);
-            videoId = data[0].id.videoId;
+
+            //pass first youtube search for name of recipe
+            this.setState({
+                id: data[0].id.videoId
+            });
 
         });
-        //how to wait for server responce it is passing undefind
-        console.log(videoId)
-        this.setState({
-            id: videoId
-        });
-
     }
+
 
 
     render() {
 
-
-
+       //url of yt video
        const url = `https://www.youtube.com/embed/${this.state.id}`;
 
-        console.log(url);
         const liItems = this.props.data.recipe.ingredientLines.map((a,i) => {
             return <li key={a+i+"2"} className={"bg-light list-group-item text-dark "}>{a}</li>
         })
 
-        return (
+        return <div>
             <div className={"item-details bg-dark w-100 d-flex flex-row justify-content-between align-content-center"}>
                 <div className={""}>
                     <ul className={"list-group list-recipe p-4"}>
-                    {liItems}
+                        {liItems}
                     </ul>
-                </div> 
+                </div>
                 <div className={"d-flex flex-column justify-content-start align-items-start text-light p-4"}>
                     <img className={"mb-4"} src={this.props.data.recipe.image} alt="food.img"/>
                     <p>Details:</p>
                     <p>Portions: {this.props.data.recipe.yield}</p>
-                    <p>Calories per portion: {Math.round(this.props.data.recipe.calories / this.props.data.recipe.yield)}</p>
-                </div>
-                <div className={"d-flex flex-column justify-content-start align-content-center p-4"}>
-                    <div className="embed-responsive embed-responsive-16by9">
-                    <iframe src={url} className="embed-responsive-item"/>
-                    </div>
-                    <a target="_blank" className={"btn btn-info btn-block mt-4"} role={"button"} href={this.props.data.recipe.url}>Check out recipe!</a>
+                    <p>Calories per
+                        portion: {Math.round(this.props.data.recipe.calories / this.props.data.recipe.yield)}</p>
+                    <a target="_blank" className={"btn btn-info btn-block mt-4"} role={"button"}
+                       href={this.props.data.recipe.url}>Check out recipe!</a>
                 </div>
 
+
             </div>
-        );
+            <div className={"bg-dark d-flex flex-column justify-content-start align-content-center p-4  "}>
+                <div className="embed-responsive embed-responsive-16by9">
+                    <iframe src={url} className="embed-responsive-item"/>
+                </div>
+            </div>
+        </div>;
     }
 }
 

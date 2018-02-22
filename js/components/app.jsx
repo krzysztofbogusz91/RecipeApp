@@ -2,7 +2,17 @@ import React from 'react';
 import RecipeApp from './recipe-list.jsx';
 import Nav from './nav.jsx';
 import SearchBar from './search-bar.jsx';
-import Footer from './footer.jsx'
+import About from './a-page.jsx';
+import Favourites from './favourites.jsx';
+import Footer from './footer.jsx';
+
+import {
+    HashRouter,
+    Route,
+    Link,
+    Switch,
+    NavLink,
+} from 'react-router-dom';
 
 class App extends React.Component {
     constructor(props) {
