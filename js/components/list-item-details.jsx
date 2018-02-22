@@ -1,8 +1,6 @@
 import React from "react";
-import YTSearch from "youtube-api-search"
-
+import YTSearch from "youtube-api-search";
 const API_KEY = "AIzaSyAQ6twlYXicuLXk2m0l9cGOkZpx4eYp6Iw";
-
 
 class ListItemDetails extends React.Component {
     constructor(props) {
@@ -11,14 +9,11 @@ class ListItemDetails extends React.Component {
             id: ""
         }
 
-        //Need to work on better video proposition search mechnanism
+        //Need to work on better video proposition search mechanism
         //sometimes gets weird propositions
 
         //feach data from yt api, change state and pass it to url
         YTSearch({key: API_KEY, term: this.props.termYT}, (data) => {
-
-            console.log(data[0].id.videoId);
-
             //pass first youtube search for name of recipe
             this.setState({
                 id: data[0].id.videoId
@@ -29,12 +24,14 @@ class ListItemDetails extends React.Component {
     //update data base, add element to user favouries list;
     addToFavourites = (event) => {
         event.preventDefault();
-        console.log(this, "favclick");
+        const favItem ={};
+        favItem.data = this.props.data;
+        favListDb.favs.push(favItem);
     }
 
 
     render() {
-        console.log(favListDb)
+
         //url of yt video
         const url = `https://www.youtube.com/embed/${this.state.id}`;
 

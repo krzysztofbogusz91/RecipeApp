@@ -13,7 +13,6 @@ class RecipeComponents extends React.Component {
 
     //toggle fileters on click
     filters = (filers) => {
-        console.log("przekazano : " + filers)
         //if pased filter is not present in filters add it
         if (this.state.filters.indexOf(filers) === -1) {
             this.setState({
@@ -36,7 +35,6 @@ class RecipeComponents extends React.Component {
     }
 
     render() {
-
         return (
             <div>
                 <SearchBar param={this.param} filters={this.filters}/>

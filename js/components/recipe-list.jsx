@@ -10,7 +10,6 @@ class RecipeApp extends React.Component {
     }
 
     getData = () => {
-        console.log("Aktywne filtry: " + this.props.filters);
         const key = '5b315f7bf33cf8394db9196b3f6e7a88';
         const appId = '0824c68c';
         //gets search value from search-bar => app => here
@@ -27,7 +26,6 @@ class RecipeApp extends React.Component {
             })
             .then(data => {
                 //update RecipeApp state.data - with data from API
-                console.log(data.hits)
                 this.setState({
                     data: data.hits
                 })
