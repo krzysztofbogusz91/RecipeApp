@@ -81,18 +81,24 @@ export default class ListItemDetails extends React.Component {
 
 
                 <div
-                    className={"item-details bg-dark w-100 d-flex flex-row justify-content-between align-content-center"}>
+                    className={"item-details bg-dark w-100 d-flex flex-row justify-content-between align-items-center"}>
 
-                    <div className={""}>
+                    <div className={"d-flex flex-column justify-content-center align-items-center"}>
                         <ul className={"list-group list-recipe p-4"}>
                             {liItems}
                         </ul>
                         <a href="#" onClick={this.addToFavourites}
-                           className={"btn btn-warning text-dark btn-block m-4"}>Add to
+                           className={"add-to-fav-button btn btn-warning text-dark m-4"}>Add to
                             Favourites!</a>
                     </div>
+
+                    <div>
+                        <img className={"align-self-start"} src={this.props.data.recipe.image} alt="food.img"/>
+
+                    </div>
+
                     <div className={"d-flex flex-column justify-content-start align-items-start text-light p-4"}>
-                        <img className={"mb-4"} src={this.props.data.recipe.image} alt="food.img"/>
+
                         <p>Details:</p>
                         <p>Portions: {this.props.data.recipe.yield}</p>
                         <p>Calories per
@@ -103,7 +109,7 @@ export default class ListItemDetails extends React.Component {
 
 
                 </div>
-                <div className={"bg-dark d-flex flex-column justify-content-start align-content-center p-4  "}>
+                <div className={"bg-dark d-flex flex-column justify-content-start align-content-center p-4  w-100"}>
                     <div className="embed-responsive embed-responsive-16by9">
                         <iframe src={url} className="embed-responsive-item"/>
                     </div>

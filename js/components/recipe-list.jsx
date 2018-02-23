@@ -11,6 +11,14 @@ class RecipeApp extends React.Component {
         }
     }
 
+    handleKeyPress = (event) =>{
+        console.log(this);
+        console.log(event.key);
+        if(event.charCode === 13){
+            console.log("enter press");
+        }
+    }
+
     getData = () => {
         const key = '5b315f7bf33cf8394db9196b3f6e7a88';
         const appId = '0824c68c';

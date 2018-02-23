@@ -60,7 +60,7 @@ export default class Favourites extends React.Component {
 
         return (
             <div>
-                <h1 className={"text-info text-center"}>FAVOURITES</h1>
+                <h1 className={"text-info text-center m-4"}>YOUR FAVOURITES:</h1>
                 <ul>
                     {listNew}
                 </ul>

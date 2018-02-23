@@ -1,6 +1,13 @@
 /*my CSS styles*/
+*{
+    box-sizing: border-box;
+}
+
+/*ABOUT Section*/
+
 .about{
     height: 60vh;
+    background-color: rgba(179,208,207,0.4);
 
 }
 .container-main{
@@ -26,6 +33,11 @@ nav > ul{
 
 .item-details > div > img{
     max-height: 150px;
+}
+
+.add-to-fav-button{
+    width: 75%;
+    margin: 0 auto;
 }
 
 iframe{

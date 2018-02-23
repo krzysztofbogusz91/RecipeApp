@@ -32,9 +32,9 @@ class ListItem extends React.Component {
         return (
             <div className={""}>
                 <li onClick={this.toggleShow}
-                    className={"list-group-item list-group-item-action d-flex flex-row justify-content-between align-content-center pt-2 "}>
-                    <h4 className={"text-info"}>{this.props.data.recipe.label}</h4>
-                    <span className={"text-align-left "}>Clik!</span>
+                    className={"list-group-item list-group-item-action d-flex flex-row justify-content-between align-items-center "}>
+                    <h5 className={"text-info font-weight-light"}>{this.props.data.recipe.label}</h5>
+                    <span className={"text-align-left text-small"}>Clik to see details!</span>
                 </li>
                 {this.state.show && <ListItemDetails data={this.props.data} termYT={this.props.data.recipe.label}/>}
             </div>

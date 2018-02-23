@@ -37,8 +37,9 @@ class App extends React.Component {
                         <Route exact path="/" component={About}/>
                         <Route path="/recipe" component={RecipeComponents}/>
                         <Route path="/fav" component={Favourites}/>
+                        <Footer/>
                     </div>
-                    <Footer/>
+
                 </div>
             </HashRouter>
         );
