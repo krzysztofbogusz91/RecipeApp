@@ -30,18 +30,17 @@ export default class ListItemDetails extends React.Component {
     //update data base, add element to user fav list;
     addToFavourites = (event) => {
         event.preventDefault();
-        //look for doubles (data base viev from favourites list)
-        //  this.props.keyLabel.forEach((a)=>{
-        //     console.log(a[0].includes(this.props.data.recipe.label));
-        // })
 
+        //check if vals are doble
+        //ONLY WORK IN FAVOURITES NEED TO MOVE GET API HIGHER SO DATA IS EVENLY SEND TO FAV AND RECIPE
+        if(this.props.keyLabel !==undefined){
         for(let i = 0; i < this.props.keyLabel.length; i++){
              if(this.props.keyLabel[i][0].includes(this.props.data.recipe.label)){
                  console.log("alredy in favourites");
                  return null
              }
         }
-
+        }
         // console.log(this.props.myFavs.contains(this.props.data.label));
         const data = {
             data: {
@@ -87,17 +86,25 @@ export default class ListItemDetails extends React.Component {
         //only temporary till fetch working for show
         this.setState({
             removeFav:false
+        });
+
+        let dbId = "";
+
+         this.props.keyLabel.forEach((a)=>{
+            if(a[0].includes(this.props.data.recipe.label)){
+                dbId = a[1];
+            }
         })
 
-        const dbId = "";
 
+        //check if dbId exist if no return null
         if(dbId.length > 1){
             //update state so button add to favs shows again
             this.setState({
                 removeFav:false
             })
 
-        const myDb2 = `https://recipe-app-195913.firebaseio.com/hits/${dbID}.json`;
+        const myDb2 = `https://recipe-app-195913.firebaseio.com/hits/${dbId}.json`;
         fetch(myDb2,{
             method: 'DELETE'
         })
@@ -110,7 +117,9 @@ export default class ListItemDetails extends React.Component {
             .then(data => {
 
             })
-            .catch(err => console.log("err"))
+            .catch(err => console.log("err"));
+            //TEMPORARY solution until modifying this trough state
+            this.forceUpdate()
             console.log("delete:", dbId);
         }else{
             return null

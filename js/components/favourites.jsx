@@ -5,6 +5,8 @@ import Loader from "./loader.jsx";
 // LEFT TO DO
 //Add delete from data base button / switch with add if it is in favs
 //Validation to avoid dubbles in db
+//NEED TO MOVE THIS FETCH TO HIGHER COMPONENT SO DATA IN FAV I REC-LIST IS EQUAL
+
 
 export default class Favourites extends React.Component {
     constructor(props) {
@@ -15,7 +17,7 @@ export default class Favourites extends React.Component {
             keyLabel: []
         }
 
-
+        //NEED TO MOVE THIS FETCH TO HIGHER COMPONENT SO DATA IN FAV I REC-LIST IS EQUAL
         const myDb = "https://recipe-app-195913.firebaseio.com/hits.json";
         fetch(myDb,{
             method: 'get'
@@ -38,8 +40,10 @@ export default class Favourites extends React.Component {
                 let keyLabel = []
                 for(let i = 0;i<keys.length;i++){
                     let k = keys[i];
-                    console.log(k);
+
                     arr.push([data[k]]);
+
+                    //add pairs data key to arr for validation
                     keyLabel.push([data[k].data.data.recipe.label, k])
 
                 }
@@ -50,11 +54,8 @@ export default class Favourites extends React.Component {
                     show: false,
                     keyLabel: keyLabel
                 })
-
             })
             .catch(err => console.log("err"))
-
-
     }
 
 
