@@ -11,14 +11,6 @@ class RecipeApp extends React.Component {
         }
     }
 
-    handleKeyPress = (event) =>{
-        console.log(this);
-        console.log(event.key);
-        if(event.charCode === 13){
-            console.log("enter press");
-        }
-    }
-
     getData = () => {
         const key = '5b315f7bf33cf8394db9196b3f6e7a88';
         const appId = '0824c68c';
@@ -34,7 +26,7 @@ class RecipeApp extends React.Component {
                 if (response.ok)
                     return response.json();
                 else
-                    throw new Error('err responce not ok');
+                    throw new Error('err response not ok');
             })
             .then(data => {
                 //update RecipeApp state.data - with data from API
@@ -69,12 +61,12 @@ class RecipeApp extends React.Component {
             })
             //print menu list
             list = list.map((a, i) => {
-                return <ListItem key={a + i} data={a}/>
+                return <ListItem keyLabelPairs={[]} removeFav={false} key={a + i} data={a}/>
             })
         } else {
             //list all hits from data and pass each val to  => list-item
             list = list.map((a, i) => {
-                return <ListItem key={a + i} data={a}/>
+                return <ListItem removeFav={false} key={a + i} data={a}/>
             })
         }
         //this.getData on click fetch new data from api => new search each time

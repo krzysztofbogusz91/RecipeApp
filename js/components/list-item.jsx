@@ -5,7 +5,8 @@ class ListItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: false
+            show: false,
+            removeFav: this.props.removeFav
         }
     }
 
@@ -26,7 +27,7 @@ class ListItem extends React.Component {
     }
 
     render() {
-        //handle toggle funcion on li element
+        //handle toggle function on li element
         //pass props to details component, also yt search term for video matching recipe
 
         return (
@@ -36,7 +37,7 @@ class ListItem extends React.Component {
                     <h5 className={"text-info font-weight-light mr-auto pt-2"}>{this.props.data.recipe.label}</h5>
                     <span className={"pt-2 text-small"}>Clik to see details!</span>
                 </div>
-                {this.state.show && <ListItemDetails data={this.props.data} termYT={this.props.data.recipe.label}/>}
+                {this.state.show && <ListItemDetails keyLabel={this.props.keyLabelPairs}  removeFav={this.state.removeFav} data={this.props.data} termYT={this.props.data.recipe.label}/>}
             </li>
         );
     }

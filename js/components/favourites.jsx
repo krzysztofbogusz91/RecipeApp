@@ -11,7 +11,8 @@ export default class Favourites extends React.Component {
         super(props);
         this.state = {
             myFavs: [],
-            show: true
+            show: true,
+            keyLabel: []
         }
 
 
@@ -34,35 +35,26 @@ export default class Favourites extends React.Component {
 
                 //saves my data in arr
                 let arr = [];
+                let keyLabel = []
                 for(let i = 0;i<keys.length;i++){
                     let k = keys[i];
                     console.log(k);
                     arr.push([data[k]]);
+                    keyLabel.push([data[k].data.data.recipe.label, k])
 
                 }
+
                 //sets saved on db to state to show it
                 this.setState({
                     myFavs: arr,
-                    show: false
+                    show: false,
+                    keyLabel: keyLabel
                 })
 
             })
             .catch(err => console.log("err"))
 
-        // const myDb2 = "https://recipe-app-195913.firebaseio.com/hits/-L616n96pvi6z2YYxB1H.json";
-        // fetch(myDb2,{
-        //     method: 'DELETE'
-        // })
-        //     .then(response => {
-        //         if (response.ok)
-        //             return response.json();
-        //         else
-        //             throw new Error('err not ok');
-        //     })
-        //     .then(data => {
-        //
-        //     })
-        //     .catch(err => console.log("err"))
+
     }
 
 
@@ -74,7 +66,7 @@ export default class Favourites extends React.Component {
 
         let listNew = favList.map((a, i) => {
             //pass saved data to list item and create new components
-            return <ListItem key={a + i + "fav"} data={a[0].data.data}/>
+            return <ListItem removeFav={true} key={a + i + "fav"} data={a[0].data.data} keyLabelPairs={this.state.keyLabel}/>
         });
 
         return (

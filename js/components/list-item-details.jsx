@@ -10,7 +10,7 @@ export default class ListItemDetails extends React.Component {
         this.state = {
             id: "",
             loader: true,
-            removeFav: false,
+            removeFav: this.props.removeFav,
         }
 
         //Need to work on better video proposition search mechanism
@@ -27,19 +27,22 @@ export default class ListItemDetails extends React.Component {
         });
     }
 
-    //update data base, add element to user favouries list;
+    //update data base, add element to user fav list;
     addToFavourites = (event) => {
         event.preventDefault();
+        //look for doubles (data base viev from favourites list)
+        //  this.props.keyLabel.forEach((a)=>{
+        //     console.log(a[0].includes(this.props.data.recipe.label));
+        // })
 
+        for(let i = 0; i < this.props.keyLabel.length; i++){
+             if(this.props.keyLabel[i][0].includes(this.props.data.recipe.label)){
+                 console.log("alredy in favourites");
+                 return null
+             }
+        }
 
-
-        //get acces to fire base
-        const database = firebase.database();
-        console.log(database);
-        const ref = database.ref("hits");
-        console.log(ref)
-        //Create new data object to pass it in props to ListItem
-        // CAN NOT send this.props.data (copy from food api) for firebase (it containes empty keys => gives errors)
+        // console.log(this.props.myFavs.contains(this.props.data.label));
         const data = {
             data: {
                 data: {
@@ -55,8 +58,23 @@ export default class ListItemDetails extends React.Component {
                 }
             }
         }
-        //save data to firebase
-        ref.push(data);
+
+        fetch("https://recipe-app-195913.firebaseio.com/hits.json",{
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok)
+
+                return response.json();
+                else
+                    throw new Error('err not ok');
+            })
+            .then(data => {
+
+            })
+            .catch(err => console.log("err"))
+
 
         this.setState({
             removeFav: true
@@ -66,12 +84,47 @@ export default class ListItemDetails extends React.Component {
     removeFromFav = (e) => {
         e.preventDefault();
         console.log("remove me");
+        //only temporary till fetch working for show
         this.setState({
             removeFav:false
         })
+
+        const dbId = "";
+
+        if(dbId.length > 1){
+            //update state so button add to favs shows again
+            this.setState({
+                removeFav:false
+            })
+
+        const myDb2 = `https://recipe-app-195913.firebaseio.com/hits/${dbID}.json`;
+        fetch(myDb2,{
+            method: 'DELETE'
+        })
+            .then(response => {
+                if (response.ok)
+                    return response.json();
+                else
+                    throw new Error('err not ok');
+            })
+            .then(data => {
+
+            })
+            .catch(err => console.log("err"))
+            console.log("delete:", dbId);
+        }else{
+            return null
+        }
+
     }
 
     render() {
+        // console.log(this.props.keyLabel);
+        // console.log(this.props.data.recipe.label);
+        //
+        // this.props.keyLabel.forEach((a)=>{
+        //     console.log(a[0].includes(this.props.data.recipe.label));
+        // })
 
         //url of yt video
         const url = `https://www.youtube.com/embed/${this.state.id}`;
