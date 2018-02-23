@@ -30,14 +30,14 @@ class ListItem extends React.Component {
         //pass props to details component, also yt search term for video matching recipe
 
         return (
-            <div className={"row"}>
-                <li onClick={this.toggleShow}
-                    className={"list-group-item list-group-item-action col-md-12"}>
-                    <h5 className={"text-info font-weight-light "}>{this.props.data.recipe.label}</h5>
-                    <span className={" text-small "}>Clik to see details!</span>
-                </li>
+            <li className={"list-unstyled  p-0 m-0"}>
+                <div onClick={this.toggleShow}
+                    className={"list-group-item list-group-item-action col-md-12 d-flex flex-row justify-content-end"}>
+                    <h5 className={"text-info font-weight-light mr-auto pt-2"}>{this.props.data.recipe.label}</h5>
+                    <span className={"pt-2 text-small"}>Clik to see details!</span>
+                </div>
                 {this.state.show && <ListItemDetails data={this.props.data} termYT={this.props.data.recipe.label}/>}
-            </div>
+            </li>
         );
     }
 }

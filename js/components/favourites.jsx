@@ -1,5 +1,6 @@
 import React from "react";
 import ListItem from "./list-item.jsx";
+import Loader from "./loader.jsx";
 
 // LEFT TO DO
 //Add delete from data base button / switch with add if it is in favs
@@ -9,11 +10,12 @@ export default class Favourites extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            myFavs: []
+            myFavs: [],
+            show: true
         }
 
 
-        const myDb = "https://recipe-app-195913.firebaseio.com/hits.json"
+        const myDb = "https://recipe-app-195913.firebaseio.com/hits.json";
         fetch(myDb,{
             method: 'get'
         })
@@ -24,6 +26,7 @@ export default class Favourites extends React.Component {
                     throw new Error('err not ok');
             })
             .then(data => {
+
                 //update RecipeApp state.data - with data from API
 
                 //fire base only way to get data => avoiding weird object names
@@ -33,17 +36,33 @@ export default class Favourites extends React.Component {
                 let arr = [];
                 for(let i = 0;i<keys.length;i++){
                     let k = keys[i];
+                    console.log(k);
                     arr.push([data[k]]);
 
                 }
                 //sets saved on db to state to show it
                 this.setState({
-                    myFavs: arr
+                    myFavs: arr,
+                    show: false
                 })
 
             })
             .catch(err => console.log("err"))
 
+        // const myDb2 = "https://recipe-app-195913.firebaseio.com/hits/-L616n96pvi6z2YYxB1H.json";
+        // fetch(myDb2,{
+        //     method: 'DELETE'
+        // })
+        //     .then(response => {
+        //         if (response.ok)
+        //             return response.json();
+        //         else
+        //             throw new Error('err not ok');
+        //     })
+        //     .then(data => {
+        //
+        //     })
+        //     .catch(err => console.log("err"))
     }
 
 
@@ -62,7 +81,7 @@ export default class Favourites extends React.Component {
             <div>
                 <h1 className={"text-info text-center m-4"}>YOUR FAVOURITES:</h1>
                 <ul>
-                    {listNew}
+                    {this.state.show ? <Loader/> : listNew}
                 </ul>
             </div>
         );

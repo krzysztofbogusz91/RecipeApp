@@ -31,9 +31,9 @@ class App extends React.Component {
 
         return (
             <HashRouter>
-                <div>
+                <div >
                     <Nav/>
-                    <div className={"container-main"}>
+                    <div className={"container w-75 justify-content-center"}>
                         <Route exact path="/" component={About}/>
                         <Route path="/recipe" component={RecipeComponents}/>
                         <Route path="/fav" component={Favourites}/>

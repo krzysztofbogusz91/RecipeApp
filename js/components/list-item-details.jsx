@@ -9,7 +9,8 @@ export default class ListItemDetails extends React.Component {
         super(props);
         this.state = {
             id: "",
-            loader: true
+            loader: true,
+            removeFav: false,
         }
 
         //Need to work on better video proposition search mechanism
@@ -30,10 +31,13 @@ export default class ListItemDetails extends React.Component {
     addToFavourites = (event) => {
         event.preventDefault();
 
+
+
         //get acces to fire base
         const database = firebase.database();
-
+        console.log(database);
         const ref = database.ref("hits");
+        console.log(ref)
         //Create new data object to pass it in props to ListItem
         // CAN NOT send this.props.data (copy from food api) for firebase (it containes empty keys => gives errors)
         const data = {
@@ -54,8 +58,18 @@ export default class ListItemDetails extends React.Component {
         //save data to firebase
         ref.push(data);
 
+        this.setState({
+            removeFav: true
+        })
     }
 
+    removeFromFav = (e) => {
+        e.preventDefault();
+        console.log("remove me");
+        this.setState({
+            removeFav:false
+        })
+    }
 
     render() {
 
@@ -72,13 +86,13 @@ export default class ListItemDetails extends React.Component {
         //add loader while page is not loaded else render list
         if (this.state.loader === true) {
             return (
-                <div className={"p-4"}>
+                <div className={" col-md-12 p-4"}>
                     <Loader/>
                 </div>);
         } else {
 
-            return (<div className={"bg-secondary col-md-12"}>
-
+            return (
+                <div className={"bg-secondary col-md-12"}>
 
                 <div className={"item-details row"}>
 
@@ -86,9 +100,11 @@ export default class ListItemDetails extends React.Component {
                         <ul className={"list-group list-recipe w-100"}>
                             {liItems}
                         </ul>
+                        {this.state.removeFav ? <a href="#" onClick={this.removeFromFav}
+                                                   className={"add-to-fav-button btn btn-danger btn-block text-dark mt-4"}>Remove from Favourites</a> :
                         <a href="#" onClick={this.addToFavourites}
                            className={"add-to-fav-button btn btn-warning btn-block text-dark mt-4"}>Add to
-                            Favourites!</a>
+                            Favourites!</a>}
                     </div>
 
                     <div className={"col-md-4 p-4"}>

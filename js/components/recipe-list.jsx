@@ -79,12 +79,16 @@ class RecipeApp extends React.Component {
         }
         //this.getData on click fetch new data from api => new search each time
         return (
-            <div className={""}>
-                <a className={"btn btn-info btn-block"} role={"button"} onClick={this.getData}>Get Recipe List:</a>
-                <ul className={"text-info mt-5 list-group list-recipes"}>
-                    {this.state.loader ? <Loader /> : null}
-                    {(list.length === 0 && this.state.loader === false) ? "Write query in search box and hit search button to look for recipes..." : list}
-                </ul>
+            <div>
+                <div className={"row"}>
+                    <a className={"btn btn-info btn-block col-md-12"} role={"button"} onClick={this.getData}>Get Recipe List:</a>
+                </div>
+            <div className={"row"}>
+                    <ul className={"text-info list-unstyled list-group col-md-12 pr-0 mt-4"}>
+                        {this.state.loader ? <Loader /> : null}
+                        {(list.length === 0 && this.state.loader === false) ? "Write query in search box and hit search button to look for recipes..." : list}
+                    </ul>
+                </div>
             </div>
         )
     }
