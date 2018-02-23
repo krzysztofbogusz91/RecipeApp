@@ -36,7 +36,7 @@ class RecipeComponents extends React.Component {
 
     render() {
         return (
-            <div className={""}>
+            <div className={"mb-5"}>
                 <SearchBar param={this.param} filters={this.filters}/>
                 <RecipeApp filters={this.state.filters} searchTerm={this.state.searchTerm}/>
             </div>
