@@ -1,8 +1,8 @@
 /*my CSS styles*/
-*{
-    box-sizing: border-box;
+.container-main{
+    width: 75%;
+    margin: 0 auto;
 }
-
 /*ABOUT Section*/
 
 .about{
@@ -10,10 +10,7 @@
     background-color: rgba(179,208,207,0.4);
 
 }
-.container-main{
-    width: 75%;
-    margin: 0 auto;
-}
+
 
 nav > ul{
     width: 75%;
@@ -27,22 +24,19 @@ nav > ul{
 
 
 .list-recipe > li{
-    font-size: 12px;
+    width: 100%;
+    font-size: 10px;
     opacity: 0.8;
 }
 
-.item-details > div > img{
-    max-height: 150px;
-}
+/*.item-details > div > img{*/
+    /*height: 100%;*/
+/*}*/
 
-.add-to-fav-button{
-    width: 75%;
-    margin: 0 auto;
-}
+/*.add-to-fav-button{*/
+    /*width:200px;*/
+/*}*/
 
-iframe{
-    width: 400px;
-}
 
 
 /* Loader (*/
