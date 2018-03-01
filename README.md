@@ -1,6 +1,6 @@
 # RecipeApp 0.0.1
 
-React, ReactRouter, ES6, fetch, Firebase, Bootstrap4
+*React, ReactRouter, ES6, fetch, Firebase, Bootstrap4*
 
 My CodersLabs bootcamp end project - simple app conected with two difrent API (recipes, YouTube) and with basic functionality to save favourites to database and check them out later.
 
@@ -10,7 +10,7 @@ App also has filter methods that allow applying "live" filters on list of recipe
 
 User can save favourite recipes to data base and then display them on other window where it is posible to delete unwanted elements.
 
-#Issues:
+**#Issues:**
 - need to move delete call to higher components || Delete funcionaly not working in search for rec. window. 
 - if recipe is alredy in favourites there should be a display button for delete (not to add) || Possible to add double hits
 - HashRouter - transfer to ReactRouter
