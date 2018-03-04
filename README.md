@@ -1,4 +1,4 @@
-# RecipeApp 0.0.1
+# RecipeApp 1.0.0
 
 *React, ReactRouter, ES6, fetch, Firebase, Bootstrap4*
 
