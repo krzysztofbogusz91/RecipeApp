@@ -2,7 +2,7 @@
 
 *React, ReactRouter, ES6, fetch, Firebase, Bootstrap4*
 
-My CodersLabs bootcamp end project - simple app connected with two different API (recipes, YouTube) and with basic functionality to save favourites to database and check them out later.
+My CodersLabs bootcamp graduation project - simple app connected with two different API (recipes, YouTube) and with basic functionality to save favourites to database and check them out later.
 
 App takes user input and based on it returns list of hits from fetch call. User can toggle on specific elements, and on toggle app sends another Api call this time to YouTube - to search for maching list name and display first movie from YT search. (It is not perfect solution some of the movies don't fit to recipes).
 
